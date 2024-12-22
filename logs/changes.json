@@ -1,0 +1,2 @@
+{"event_type": "modified", "file_path": "/home/kali/bsm/test/example.txt", "timestamp": "Sat Dec 21 16:54:12 2024"}
+{"event_type": "deleted", "file_path": "/home/kali/bsm/test/example_moved.txt", "timestamp": "Sat Dec 21 16:54:21 2024"}

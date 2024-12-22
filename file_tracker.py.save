@@ -1,0 +1,32 @@
+import os
+import json
+import time
+
+# İzlenecek dizin
+watch_directory = "/home/kali/bsm/test"
+log_file = "/home/kali/bsm/logs/changes.json"
+
+# Daha önceki durumun saklanması
+previous_state = set(os.listdir(watch_directory))
+
+while True:
+    time.sleep(5)  # 5 saniyelik aralıklarla kontrol
+    current_state = set(os.listdir(watch_directory))
+
+    # Değişikliklerin tespiti
+    added = current_state - previous_state
+    removed = previous_state - current_state
+
+    changes = {}
+    if added:
+        changes['added'] = list(added)
+    if removed:
+        changes['removed'] = list(removed)
+
+    if changes:
+        # JSON formatında kaydetme
+        with open(log_file, 'a') as file:
+            json.dump(changes, file)
+            file.write("\n")
+    
+    previous_state = current_state
